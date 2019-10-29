@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",
-    "mongoose": "^5.4.20",
+    "mongoose": "^5.7.5",
     "mongoose-simple-random": "^0.4.1",
     "node-fetch": "^2.3.0",
     "nodemon": "^1.18.10",
