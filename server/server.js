@@ -1,18 +1,48 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-
-const dbHelper = require('../database/database')
+const { Client } = require('pg');
 
 const publicDirectory = path.join(__dirname, 'public')
+
+const postgres = new Client({
+    user: "nick",
+    host: "localhost",
+    database: "formservice"
+});
+postgres.connect();
+
+function getAgent(agent, cb) {
+    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+        if (err) {
+            //Oops!
+            cb(err, null)
+        } else {
+            cb(null, res)
+        }
+    })
+}
 
 http.createServer(function (req, res) {
     if (req.method === 'GET') {
         if (req.url === '/agents') {
-            dbHelper.getFourRandomAgents(data => {
-                res.writeHead(200, { 'Content-Type': 'application/json' })
-                res.end(JSON.stringify(data))
-            })
+            let agents = []
+            let count = 0
+            for (let i = 0; i < 4; i++) {
+                let randomAgent = Math.floor(Math.random() * 10000000)
+                getAgent(randomAgent, (err, data) => {
+                    count++
+                    if (err) {
+                        //Oops!
+                    } else {
+                        agents.push(data.rows[0])
+                    }
+                    if (count === 4) {
+                        res.writeHead(200, { 'Content-Type': 'application/json' })
+                        res.end(JSON.stringify(agents))
+                    }
+                })
+            }
         } else {
             fs.readFile(req.url === '/' ? publicDirectory + '/index.html' : publicDirectory + req.url, (err, content) => {
                 let contentType = 'text/html';
