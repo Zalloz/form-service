@@ -1,0 +1,36 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "webpack": "webpack -d --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^2.1.1",
+    "node-fetch": "^2.3.0",
+    "pg": "^7.12.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-dom-server": "0.0.5",
+    "react-star-rating-component": "^1.4.1",
+    "style-loader": "^0.23.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "identity-obj-proxy": "^3.0.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
