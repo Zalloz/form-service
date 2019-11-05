@@ -1,3 +1,340 @@
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+}
+
+.menu-wrapper {
+  max-width: 900px
+}
+.menu-item-wrapper.active {
+  border: 1px blue solid;
+}
+.menu-item.active {
+  border: 1px green solid;
+}
+ 
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sc-bdVaJa {
+  z-index: -1;
+}
+
+.animationContainer {
+  transform: translate(-5%);
+}
+
+.firstImage {
+  height: 414px;
+  width: 545px;
+  margin-top: 1px;
+  margin-right: 1px;
+}
+
+.smallImages {
+  height: 206px;
+  width: 278px;
+  margin: 1px 1px 1px 1px;
+}
+
+.photoContainer {
+  height: 458px;
+  display: flex;
+  flex-flow: column wrap;
+  position: relative;
+}
+
+.leftButton {
+  background-color: grey;
+  height: 40px;
+  width: 30px;
+  margin-top: 185.5px;
+  outline: none;
+  font-size: 20px;
+  opacity: 0.5;
+  z-index: 1;
+  margin-right: -30px;
+}
+
+
+
+.rightButton {
+  background-color: grey;
+  height: 40px;
+  width: 30px;
+  margin-top: 185.5px;
+  outline: none;
+  font-size: 20px;
+  opacity: 0.5;
+  z-index: 1;
+  margin-left: -30px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 962px;
+  position: absolute;
+  z-index: 1;
+}
+
+.prev {
+  background-color: grey;
+  height: 40px;
+  width: 30px;
+  position: absolute;
+  top: 185.5px;
+  outline: none;
+  font-size: 20px;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.next {
+  background-color: grey;
+  height: 40px;
+  width: 30px;
+  position: absolute;
+  top: 185.5px;
+  margin-left: 931.5px;
+  outline: none;
+  font-size: 20px;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.mainContainer {
+  display: flex;
+  height: 458px;
+  width: 962px;
+  overflow: hidden;
+  position: relative;
+}
+
+.prev:hover {
+  background-color: #272222;;
+  color: white;
+  opacity: .8;
+} 
+
+.next:hover {
+  background-color: #272222;;
+  color: white;
+  opacity: .8;
+} 
+
+.rightButton:hover {
+  background-color: #272222;;
+  color: white;
+  opacity: .8;
+} 
+
+.leftButton:hover {
+  background-color: #272222;;
+  color: white;
+  opacity: .8;
+} 
+
+.closeStyle {
+  position: absolute;
+  font-size: 20px;
+  outline: none;
+  margin-left: 724px;
+  background-color: grey;
+  opacity: .5;
+  width: 30px;
+}
+
+.closeStyle:hover {
+  background-color: #272222;;
+  color: white;
+  opacity: .8;
+} 
+
+.popImageStyle {
+  height: 100%;
+  width: 545px;
+  margin: auto;
+}
+
+.popMainContainer {
+  height: 90.70%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+}
+
+.mainDiv {
+  display: flex;
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  overflow: auto;
+}
+
+#photos {
+  display: -webkit-inline-box;
+  zoom: 0.3;
+  margin-top: 50px;
+  margin-left: 80px;
+  padding: 5px;
+  overflow: scroll;
+}
+
+#gendesc {
+  display: -webkit-box;
+  margin-left: 80px;
+  zoom: 0.5;
+  font-family: arial;
+}
+
+#house-price {
+  margin-right: 125px;
+}
+
+.styles__containerFactsItems___3mAzb {
+  margin-right: 90px;
+}
+
+.styles__interiorContainerInterior___3NeMb{
+  margin-right: 110px;
+}
+
+#styles__calculatorMain___2v0RA {
+  font-size: 14px;
+  padding: 10px;
+  left: 25%;
+}
+
+#form-service {
+  display: -webkit-box;
+  zoom: 0.7;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 90px;
+}
+
+input[type="text"]{
+  font-family: 'arial';
+  font-size: 9px;
+}
+
+.style__formLabelCheckbox___1t8Eg {
+  font-family: 'arial';
+}
+
+.style__formInnerContainer___1H01l {
+  max-height: 780px
+}
+
+.style__formOuterContainer___12WXq {
+  display: block;
+  min-height: 830px;
+}
+
+.style__formInnerUpperContainer___2N1BK {
+  min-height: 400px;
+}
+
+.style__formContainerP___1G_0D {
+  font-size: 8.5px;
+  margin-top: 10px;
+}
+
+.style__formInnerLowerContainer___16-5P{
+  margin-top: 50px;
+}
+
+#similar-homes {
+  zoom: 0.5;
+  display: -webkit-box;
+  margin-left: -10px;
+  overflow: scroll;
+}
+
+h1.style__similarHomesHeader__1rbsb {
+  margin-left: 230px;
+}
+
+span.style__simHomesDays__1mXt1 {
+  margin: 0px 5px;
+  font-size: 9px;
+}
+
+button.style__similarHomesSeeAll__1uP5n {
+  margin-left: 265px;
+}
+
+.container {
+  display: grid;
+  justify-content: center;
+  overflow: auto;
+}
+
+#photos {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+#gendesc {
+  position: absolute;
+  top: 500px;
+  left: 55px;
+  z-index: 0;
+  background: white;
+  font-family: arial;
+}
+
+#styles__calculatorMain___2v0RA {
+  padding: 10px;
+  left: 40%;
+}
+
+#form-service {
+  position: absolute;
+  top: 450px;
+  left: 700px;
+  z-index: 1;
+  background: white;
+}
+
+.style__formLabelCheckbox___1t8Eg {
+  font-family: 'arial';
+}
+
+.style__formInnerContainer___1H01l {
+  max-height: 780px
+}
+
+.style__formContainerP___1G_0D {
+  font-size: 12px;
+}
+
+.style__formInnerUpperContainer___2N1BK {
+  font-size: 12px;
+}
+
+#similar-homes {
+  position: absolute;
+  margin-top: 25px;
+  top: 1400px;
+  margin-left: 50px;
+  z-index: -1;
+}
+
+h1.style__similarHomesHeader__1rbsb {
+  margin-left: 230px;
+}
+
 .formOuterContainer {
   display: flex;
   max-width: 290px;
