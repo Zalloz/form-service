@@ -46,7 +46,7 @@ const serverConfig = {
 const clientConfig = {
   mode: "development",
   target: "web",
-  entry: `${SRC_DIR}/app.jsx`,
+  entry: `${SRC_DIR}/components/index.jsx`,
   output: {
     filename: "bundle.js",
     path: DIST_DIR

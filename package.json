@@ -26,11 +26,20 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
-    "identity-obj-proxy": "^3.0.0",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
     "babel-plugin-react-transform": "^3.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "webpack-node-externals": "^1.7.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "projects": [
+      "<rootDir>/server/jest.config.js"
+    ]
   }
 }
