@@ -5,7 +5,6 @@ import LowerForm from './LowerForm.jsx'
 class Index extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props);
     this.state = {
       agents: this.props.agents,
     }
