@@ -1,3 +1,3 @@
-psql -f schema.sql -U nick
+psql -f schema.sql -U postgres
 node createCsvForPsql.js
 echo Done!

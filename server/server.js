@@ -10,9 +10,10 @@ import App from "../client/src/components/Index.jsx";
 const publicDirectory = path.join(__dirname, 'public')
 
 const postgres = new Client({
-    user: "nick",
-    host: "localhost",
-    database: "formservice"
+    user: "postgres",
+    host: "ec2-3-14-133-172.us-east-2.compute.amazonaws.com",
+    database: "formservice",
+    password: "root"
 });
 postgres.connect();
 
@@ -86,8 +87,8 @@ http.createServer(function (req, res) {
             data = req.body
             postgres.query(`INSERT INTO agents(agent_name,recent_sales,phone,agent_type,average_stars,num_ratings,agent_photo) VALUES('${data.agent_name}',${data.recent_sales},'${data.phone}','${data.agent_type}',${data.average_stars},${data.num_ratings},'${data.agent_photo}')`, (err, agentInsert) => {
                 if (err) {
-                    console.log('Insert query error')
-                    console.log(err)
+                    // console.log('Insert query error')
+                    // console.log(err)
                 } else {
                     res.end()
                 }
@@ -106,8 +107,8 @@ http.createServer(function (req, res) {
             data = req.body
             postgres.query(`UPDATE agents SET agent_name = '${data.agent_name}', recent_sales = ${data.recent_sales}, phone = '${data.phone}', agent_type = '${data.agent_type}', average_stars = ${data.average_stars}, num_ratings = ${data.num_ratings}, agent_photo = '${data.agent_photo}'  WHERE id = ${data.id}`, (err, updateAgent) => {
                 if (err) {
-                    console.log('Update query error')
-                    console.log(err)
+                    // console.log('Update query error')
+                    // console.log(err)
                 } else {
                     res.end()
                 }
@@ -126,7 +127,7 @@ http.createServer(function (req, res) {
             data = req.body
             postgres.query(`DELETE FROM agents WHERE id = ${data.id}`, (err, deleteAgent) => {
                 if (err) {
-                    console.log('Delete query error')
+                    // console.log('Delete query error')
                 } else {
                     res.end()
                 }

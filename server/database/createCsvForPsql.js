@@ -13,7 +13,7 @@ const agentTypes = ['listing', 'premier'];
 const CSVPath = path.join(__dirname, 'CSVForPsql.csv');
 
 const postgres = new Client({
-    user: "nick",
+    user: "postgres",
     host: "localhost",
     database: "formservice"
 });
