@@ -15,7 +15,8 @@ const CSVPath = path.join(__dirname, 'CSVForPsql.csv');
 const postgres = new Client({
     user: "postgres",
     host: "localhost",
-    database: "formservice"
+    database: "formservice",
+    password: "root"
 });
 postgres.connect();
 
