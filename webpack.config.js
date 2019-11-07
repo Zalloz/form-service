@@ -26,7 +26,7 @@ const jsx = {
   }
 };
 const serverConfig = {
-  mode: "development",
+  mode: "production",
   target: 'node',
   node: {
     fs: 'empty',
@@ -51,7 +51,7 @@ const serverConfig = {
 };
 
 const clientConfig = {
-  mode: "development",
+  mode: "production",
   target: "web",
   entry: `${SRC_DIR}/components/index.jsx`,
   output: {
