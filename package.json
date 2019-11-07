@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "css-loader": "^2.1.1",
+    "newrelic": "^6.1.0",
     "node-fetch": "^2.3.0",
     "pg": "^7.12.1",
     "react": "^16.8.6",
