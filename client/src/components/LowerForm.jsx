@@ -6,7 +6,7 @@ const LowerForm = ({ agents = [] }) => {
     <div className="formInnerLowerContainer">
       {agents.map((agent, idx) => {
         return (
-          <div key={agent._id}
+          <div key={idx}
             className="formAgentContainer"
             id={"formAgentContainer" + idx}>
             <span>
