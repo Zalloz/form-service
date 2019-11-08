@@ -29,19 +29,29 @@ function getAgent(agent, cb) {
     console.log('got here')
     redisClient.get(agent.toString(), (err, reply) => {
         if (err) {
-            console.log(err)
+            console.log('Redis get error', err)
+            cb(err, null)
         } else {
             console.log(reply)
+            if (reply === null) {
+                postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                    if (err) {
+                        //Oops!
+                        cb(err, null);
+                    } else {
+                        redisClient.set(agent.toString(), (err, success) => {
+                            if (err) {
+                                console.log('Redis set error', err)
+                                cb(err, null)
+                            } else {
+                                cb(null, res);
+                            }
+                        })
+                    };
+                });
+            }
         }
     })
-    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
-        if (err) {
-            //Oops!
-            cb(err, null);
-        } else {
-            cb(null, res);
-        };
-    });
 };
 
 http.createServer(function (req, res) {
