@@ -4,12 +4,17 @@ const fs = require('fs');
 const path = require('path');
 const { Client } = require('pg');
 const ReactDOMServer = require("react-dom/server");
+const redis = require('redis')
 
 import React from "react";
 import App from "../client/src/components/Index.jsx";
 
 const publicDirectory = path.join(__dirname, 'public');
 const port = process.env.PORT || 80
+
+const client = redis.createClient({
+    host: "ec2-52-15-70-152.us-east-2.compute.amazonaws.com"
+});
 
 const postgres = new Client({
     user: "postgres",
@@ -20,6 +25,13 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
+    client.get(agent.toString(), (err, reply) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(reply)
+        }
+    })
     postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
         if (err) {
             //Oops!
