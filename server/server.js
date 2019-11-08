@@ -42,7 +42,7 @@ function getAgent(agent, cb) {
                         //Oops!
                         cb(err, null);
                     } else {
-                        redisClient.set(agent.toString(), res.rows[0], (err, success) => {
+                        redisClient.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                             if (err) {
                                 console.log('Redis set error', err)
                                 cb(err, null)
@@ -53,7 +53,7 @@ function getAgent(agent, cb) {
                     };
                 });
             } else {
-                cb(null, reply)
+                cb(null, JSON.parse(reply))
             }
         }
     })
