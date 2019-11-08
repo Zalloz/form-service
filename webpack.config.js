@@ -26,7 +26,7 @@ const jsx = {
   }
 };
 const serverConfig = {
-  mode: "production",
+  mode: "development",
   target: 'node',
   node: {
     fs: 'empty',
@@ -36,11 +36,11 @@ const serverConfig = {
   entry: {
     "server.js": path.resolve(__dirname, "server/server.js")
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    })
-  ],
+  // plugins: [
+  //   new webpack.DefinePlugin({
+  //     'process.env.NODE_ENV': '"production"',
+  //   })
+  // ],
   module: {
     rules: [js, jsx]
   },
@@ -51,18 +51,18 @@ const serverConfig = {
 };
 
 const clientConfig = {
-  mode: "production",
+  mode: "development",
   target: "web",
   entry: `${SRC_DIR}/components/index.jsx`,
   output: {
     filename: "bundle.js",
     path: DIST_DIR
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    })
-  ],
+  // plugins: [
+  //   new webpack.DefinePlugin({
+  //     'process.env.NODE_ENV': '"production"',
+  //   })
+  // ],
   module: {
     rules: [
       {
