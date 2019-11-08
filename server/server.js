@@ -6,8 +6,13 @@ const { Client } = require('pg');
 const ReactDOMServer = require("react-dom/server");
 const redis = require('redis')
 
+setInterval(() => {
+    console.log('Ping!')
+}, 5000)
+
 import React from "react";
 import App from "../client/src/components/Index.jsx";
+import { setInterval } from "timers";
 
 const publicDirectory = path.join(__dirname, 'public');
 const port = process.env.PORT || 80
@@ -68,7 +73,7 @@ http.createServer(function (req, res) {
             let agents = [];
             let count = 0;
             for (let i = 0; i < 4; i++) {
-                let randomAgent = Math.floor(Math.random() * 10000000);
+                let randomAgent = Math.floor(Math.random() * 7500000 + 2500000);
                 getAgent(randomAgent, (err, data) => {
                     count++;
                     if (err) {
