@@ -42,18 +42,18 @@ function getAgent(agent, cb) {
                         //Oops!
                         cb(err, null);
                     } else {
-                        redisClient.set(agent.toString(), JSON.stringify(res), (err, success) => {
+                        redisClient.set(agent.toString(), res.rows[0], (err, success) => {
                             if (err) {
                                 console.log('Redis set error', err)
                                 cb(err, null)
                             } else {
-                                cb(null, res);
+                                cb(null, res.rows[0]);
                             }
                         })
                     };
                 });
             } else {
-                cb(JSON.parse(reply), null)
+                cb(null, reply)
             }
         }
     })
@@ -79,7 +79,7 @@ http.createServer(function (req, res) {
                     if (err) {
                         //Oops!
                     } else {
-                        agents.push(data.rows[0]);
+                        agents.push(data);
                     };
                     if (count === 4) {
                         res.writeHead(200, {
