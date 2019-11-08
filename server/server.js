@@ -26,13 +26,11 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
-    console.log('got here')
     redisClient.get(agent.toString(), (err, reply) => {
         if (err) {
             console.log('Redis get error', err)
             cb(err, null)
         } else {
-            console.log(reply)
             if (reply === null) {
                 postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
                     if (err) {
