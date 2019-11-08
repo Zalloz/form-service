@@ -12,8 +12,9 @@ import App from "../client/src/components/Index.jsx";
 const publicDirectory = path.join(__dirname, 'public');
 const port = process.env.PORT || 80
 
-const client = redis.createClient({
-    host: "ec2-52-15-70-152.us-east-2.compute.amazonaws.com"
+const redisClient = redis.createClient({
+    host: "ec2-52-15-70-152.us-east-2.compute.amazonaws.com",
+    port: "6379"
 });
 
 const postgres = new Client({
@@ -26,7 +27,7 @@ postgres.connect();
 
 function getAgent(agent, cb) {
     console.log('got here')
-    client.get(agent.toString(), (err, reply) => {
+    redisClient.get(agent.toString(), (err, reply) => {
         if (err) {
             console.log(err)
         } else {
