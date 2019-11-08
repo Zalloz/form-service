@@ -8,7 +8,7 @@ const redis = require('redis')
 
 setInterval(() => {
     console.log('Ping!')
-}, 5000)
+}, 25000)
 
 import React from "react";
 import App from "../client/src/components/Index.jsx";
@@ -24,7 +24,8 @@ const redisClient = redis.createClient({
 
 const postgres = new Client({
     user: "postgres",
-    host: "ec2-3-14-133-172.us-east-2.compute.amazonaws.com",
+    // host: "ec2-3-14-133-172.us-east-2.compute.amazonaws.com", //1-Form-Database
+    host: "ec2-3-134-98-30.us-east-2.compute.amazonaws.com", //2-Form-Database
     database: "formservice",
     password: "root"
 });
