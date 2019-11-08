@@ -25,6 +25,7 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
+    console.log('got here')
     client.get(agent.toString(), (err, reply) => {
         if (err) {
             console.log(err)

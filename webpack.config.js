@@ -36,11 +36,11 @@ const serverConfig = {
   entry: {
     "server.js": path.resolve(__dirname, "server/server.js")
   },
-  // plugins: [
-  //   new webpack.DefinePlugin({
-  //     'process.env.NODE_ENV': '"production"',
-  //   })
-  // ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"',
+    })
+  ],
   module: {
     rules: [js, jsx]
   },
@@ -58,11 +58,11 @@ const clientConfig = {
     filename: "bundle.js",
     path: DIST_DIR
   },
-  // plugins: [
-  //   new webpack.DefinePlugin({
-  //     'process.env.NODE_ENV': '"production"',
-  //   })
-  // ],
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"',
+    })
+  ],
   module: {
     rules: [
       {
