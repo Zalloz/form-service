@@ -37,7 +37,6 @@ function getAgent(agent, cb) {
             console.log('Redis get error', err)
             cb(err, null)
         } else {
-            console.log(reply)
             if (reply === null) {
                 postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
                     if (err) {
@@ -73,7 +72,7 @@ http.createServer(function (req, res) {
             let agents = [];
             let count = 0;
             for (let i = 0; i < 4; i++) {
-                let randomAgent = Math.floor(Math.random() * 7500000 + 2500000);
+                let randomAgent = Math.floor(Math.random() * 2500000 + 7500000);
                 getAgent(randomAgent, (err, data) => {
                     count++;
                     if (err) {
