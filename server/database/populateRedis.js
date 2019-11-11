@@ -26,7 +26,7 @@ const populate = async () => {
             ratings,
             photo
         }
-        await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
+        await new Promise(resolve => redisClient.hset(`${i}`, JSON.stringify(obj), resolve));
     }
 }
 populate()
