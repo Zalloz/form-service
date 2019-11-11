@@ -39,7 +39,7 @@ function getAgent(agent, cb) {
         } else {
             console.log(agent.toString())
             if (typeof reply == 'object') {
-                console.log(reply.agent_name)
+                console.log('wtf', reply)
             }
             // cb(null, JSON.parse(reply));
             // if (reply === null) {
