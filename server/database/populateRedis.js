@@ -1,3 +1,7 @@
+setInterval(() => {
+    console.log('Ping')
+}, 25000)
+
 const faker = require('faker')
 const redis = require('redis')
 
