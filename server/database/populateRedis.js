@@ -6,7 +6,7 @@ const redisClient = redis.createClient({
     port: "6379"
 });
 
-redisClient.hset()
+const agentTypes = ['listing', 'premier'];
 
 const populate = async () => {
     for (let i = 7500000; i < 10000000; i++) {
@@ -26,7 +26,7 @@ const populate = async () => {
             ratings,
             photo
         }
-        await new Promise(resolve => redisClient.hset(`${i}`, JSON.stringify(obj), resolve));
+        await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
     }
 }
 populate()
