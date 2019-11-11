@@ -43,7 +43,6 @@ function getAgent(agent, cb) {
                         //Oops!
                         cb(err, null);
                     } else {
-                        console.log(JSON.stringify(res.rows[0]))
                         cb(null, res.rows[0]);
                         redisClient.hset(agent.toString(), agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                             if (err) {
