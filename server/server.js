@@ -32,7 +32,7 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
-    redisClient.get(agent.toString(), (err, reply) => {
+    redisClient.hget(agent.toString(), agent.toString(), (err, reply) => {
         if (err) {
             console.log('Redis get error', err)
             cb(err, null)
@@ -44,7 +44,7 @@ function getAgent(agent, cb) {
                         cb(err, null);
                     } else {
                         cb(null, res.rows[0]);
-                        redisClient.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                        redisClient.hset(agent.toString(), agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                             if (err) {
                                 console.log('Redis set error', err)
                             }
