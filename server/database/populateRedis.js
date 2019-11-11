@@ -21,7 +21,7 @@ const populate = async () => {
         const stars = faker.random.number({ min: 0, max: 5 });
         const ratings = faker.random.number({ min: 0, max: 500 });
         const photo = `https://s3-us-west-2.amazonaws.com/agents-zallo/Realtor${faker.random.number({ min: 1, max: 100 })}.jpg`;
-        const obj = {
+        const arr = [
             name,
             sales,
             phone,
@@ -29,8 +29,8 @@ const populate = async () => {
             stars,
             ratings,
             photo
-        }
-        await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
+        ]
+        await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(...arr), resolve));
     }
 }
 populate()
