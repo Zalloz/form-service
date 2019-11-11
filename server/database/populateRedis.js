@@ -13,7 +13,7 @@ const redisClient = redis.createClient({
 const agentTypes = ['listing', 'premier'];
 
 const populate = async () => {
-    for (let i = 7500000; i < 10000000; i++) {
+    for (let i = 7500000; i <= 10000000; i++) {
         const name = faker.name.firstName() + ' ' + faker.name.lastName();
         const sales = faker.random.number({ min: 0, max: 30 });
         const phone = faker.phone.phoneNumber('###-###-####');

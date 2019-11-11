@@ -1,15 +1,16 @@
 const { Client } = require('pg');
 
 const postgres = new Client({
-    user: "nick",
-    host: "localhost",
-    database: "formservice"
+    user: "postgres",
+    host: "ec2-3-134-98-30.us-east-2.compute.amazonaws.com",
+    database: "formservice",
+    password: 'root'
 });
 postgres.connect();
 
 const marks = {
-    operations: 20000,
-    interval: 1,
+    operations: 300,
+    interval: 5,
     type: 'read',
     pollIncrement: this.type === 'all' ? 4 : 1,
     errors: 0,
