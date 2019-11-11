@@ -37,7 +37,9 @@ function getAgent(agent, cb) {
             console.log('Redis get error', err)
             cb(err, null)
         } else {
-            cb(null, JSON.parse(reply));
+            console.log(agent.toString())
+            console.log(reply)
+            // cb(null, JSON.parse(reply));
             // if (reply === null) {
             //     postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
             //         if (err) {
