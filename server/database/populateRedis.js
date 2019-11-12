@@ -24,7 +24,9 @@ const populate = async () => {
             })
         })
         if (hGET === null) {
-            console.log(i)
+            if (i % 10000 == 0) {
+                console.log(i)
+            }
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
             const phone = faker.phone.phoneNumber('###-###-####');
