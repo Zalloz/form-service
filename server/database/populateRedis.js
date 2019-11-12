@@ -14,14 +14,7 @@ const agentTypes = ['listing', 'premier'];
 
 const populate = async () => {
     for (let i = 7500000; i <= 10000000; i++) {
-        // let hGET = await new Promise(resolve => redisClient.hget(`${i}`, `${i}`, resolve))
-        redisClient.hget(`${i}`, `${i}`, (err, what) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(what)
-            }
-        })
+        let hGET = redisClient.hget(`${i}`, `${i}`, resolve)
         if (hGET === null) {
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
