@@ -22,14 +22,14 @@ const redisClient = redis.createClient({
     port: "6379"
 });
 
-// const postgres = new Client({
-//     user: "postgres",
-//     // host: "ec2-3-14-133-172.us-east-2.compute.amazonaws.com", //1-Form-Database
-//     host: "ec2-3-134-98-30.us-east-2.compute.amazonaws.com", //2-Form-Database
-//     database: "formservice",
-//     password: "root"
-// });
-// postgres.connect();
+const postgres = new Client({
+    user: "postgres",
+    // host: "ec2-3-14-133-172.us-east-2.compute.amazonaws.com", //1-Form-Database
+    host: "ec2-3-134-98-30.us-east-2.compute.amazonaws.com", //2-Form-Database
+    database: "formservice",
+    password: "root"
+});
+postgres.connect();
 
 function getAgent(agent, cb) {
     redisClient.hget(agent.toString(), agent.toString(), (err, reply) => {
@@ -37,26 +37,23 @@ function getAgent(agent, cb) {
             console.log('Redis get error', err)
             cb(err, null)
         } else {
-            console.log(agent.toString())
-            console.log(JSON.parse(reply))
-            // cb(null, JSON.parse(reply));
-            // if (reply === null) {
-            //     postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
-            //         if (err) {
-            //             //Oops!
-            //             cb(err, null);
-            //         } else {
-            //             cb(null, res.rows[0]);
-            //             redisClient.hset(agent.toString(), agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
-            //                 if (err) {
-            //                     console.log('Redis set error', err)
-            //                 }
-            //             })
-            //         };
-            //     });
-            // } else {
-            //     cb(null, JSON.parse(reply))
-            // }
+            if (reply === null) {
+                postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                    if (err) {
+                        //Oops!
+                        cb(err, null);
+                    } else {
+                        cb(null, res.rows[0]);
+                        redisClient.hset(agent.toString(), agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            if (err) {
+                                console.log('Redis set error', err)
+                            }
+                        })
+                    };
+                });
+            } else {
+                cb(null, JSON.parse(reply))
+            }
         }
     })
 };
