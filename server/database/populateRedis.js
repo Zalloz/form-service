@@ -12,7 +12,8 @@ const redisClient = redis.createClient({
 
 const agentTypes = ['listing', 'premier'];
 
-let count = 0;
+let countFail = 0;
+let countSuccess = 0;
 
 const populate = async () => {
     for (let i = 7500000; i <= 10000000; i++) {
@@ -26,9 +27,9 @@ const populate = async () => {
             })
         })
         if (hGET === null) {
-            count++
-            if (count % 1000 === 0 || i === 10000000) {
-                console.log(count, 'unset hashes.')
+            countFail++
+            if (countFail % 1000 === 0 || i === 10000000) {
+                console.log(countFail, 'unset hashes.')
             }
             if (i % 10000 === 0) {
                 console.log('On hash$:', i)
@@ -51,7 +52,10 @@ const populate = async () => {
             }
             await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
         } else {
-            console.log(hGET)
+            countSuccess++
+            if (countSuccess % 1000 === 0 || i === 10000000) {
+                console.log(countSuccess, 'successes')
+            }
         }
     }
 }
