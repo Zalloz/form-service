@@ -52,6 +52,7 @@ function getAgent(agent, cb) {
                     };
                 });
             } else {
+                console.log('redis response')
                 cb(null, JSON.parse(reply))
             }
         }
