@@ -38,7 +38,6 @@ function getAgent(agent, cb) {
             cb(err, null)
         } else {
             if (reply === null) {
-                console.log(agent)
                 postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
                     if (err) {
                         //Oops!
