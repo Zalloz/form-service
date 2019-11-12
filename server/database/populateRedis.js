@@ -6,7 +6,7 @@ const faker = require('faker')
 const redis = require('redis')
 
 const redisClient = redis.createClient({
-    host: "ec2-52-15-70-152.us-east-2.compute.amazonaws.com",
+    host: "localhost", //ec2-52-15-70-152.us-east-2.compute.amazonaws.com
     port: "6379"
 });
 
