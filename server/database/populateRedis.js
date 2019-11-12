@@ -12,8 +12,10 @@ const redisClient = redis.createClient({
 
 const agentTypes = ['listing', 'premier'];
 
+let count = 0;
+
 const populate = async () => {
-    for (let i = 9610000; i <= 10000000; i++) {
+    for (let i = 7500000; i <= 10000000; i++) {
         const hGET = await new Promise((resolve, reject) => {
             redisClient.hget(`${i}`, `${i}`, (err, response) => {
                 if (err) {
@@ -24,8 +26,12 @@ const populate = async () => {
             })
         })
         if (hGET === null) {
-            if (i % 10000 == 0) {
-                console.log(i)
+            count++
+            if (count % 1000 === 0 || i === 10000000) {
+                console.log(count, 'unset hashes.')
+            }
+            if (i % 10000 === 0) {
+                console.log('On hash$:', i)
             }
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
