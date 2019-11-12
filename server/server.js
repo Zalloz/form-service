@@ -38,9 +38,7 @@ function getAgent(agent, cb) {
             cb(err, null)
         } else {
             console.log(agent.toString())
-            if (typeof reply == 'object') {
-                console.log('wtf', reply)
-            }
+            console.log(JSON.parse(reply))
             // cb(null, JSON.parse(reply));
             // if (reply === null) {
             //     postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
