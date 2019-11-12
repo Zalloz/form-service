@@ -16,7 +16,7 @@ let countFail = 0;
 let countSuccess = 0;
 
 const populate = async () => {
-    for (let i = 7500000; i <= 10000000; i++) {
+    for (let i = (7500000 + (833333 * 1 + 0)); i <= (7500000 + (833333 * 2 + 0)); i++) {
         const hGET = await new Promise((resolve, reject) => {
             redisClient.get(i.toString(), (err, response) => {
                 if (err) {
@@ -28,7 +28,7 @@ const populate = async () => {
         })
         if (hGET === null) {
             countFail++
-            if (countFail % 10000 === 0 || i === 10000000) {
+            if (countFail % 10000 === 0 || i === (7500000 + (833333 * 2 + 0))) {
                 console.log(countFail, 'unset keys.')
             }
             if (i % 10000 === 0) {
@@ -53,7 +53,7 @@ const populate = async () => {
             await new Promise(resolve => redisClient.set(i.toString(), JSON.stringify(obj), resolve));
         } else {
             countSuccess++
-            if (countSuccess % 10000 === 0 || i === 10000000) {
+            if (countSuccess % 10000 === 0 || i === (7500000 + (833333 * 2 + 0))) {
                 console.log(countSuccess, 'successes')
             }
         }
