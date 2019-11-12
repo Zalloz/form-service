@@ -122,13 +122,14 @@ function getAgent(agent, cb) {
 
 http.createServer(function (req, res) {
     if (req.method === 'GET') {
-        // if (req.url === `/loaderio-2a8a167d68cd7c32d8cbd0375cea696f`) {
-        //     let verifyPath = path.join(__dirname, `loaderio-2a8a167d68cd7c32d8cbd0375cea696f`);
-        //     fs.readFile(verifyPath, (err, verifyFile) => {
-        //         res.end('loaderio-2a8a167d68cd7c32d8cbd0375cea696f', 'utf-8');
-        //         return;
-        //     });
-        // };
+        if (req.url === `/loaderio-2a8a167d68cd7c32d8cbd0375cea696f`) {
+            res.end('loaderio-2a8a167d68cd7c32d8cbd0375cea696f', 'utf-8');
+            return
+            // let verifyPath = path.join(__dirname, `loaderio-2a8a167d68cd7c32d8cbd0375cea696f`);
+            // fs.readFile(verifyPath, (err, verifyFile) => {
+            //     return;
+            // });
+        };
         let contentType = 'text/html';
         let extension = path.extname(req.url);
         if (extension === '.js') {
