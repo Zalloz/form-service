@@ -14,6 +14,7 @@
   "dependencies": {
     "css-loader": "^2.1.1",
     "faker": "^4.1.0",
+    "multiple-redis": "^1.2.1",
     "newrelic": "^6.1.0",
     "node-fetch": "^2.3.0",
     "pg": "^7.12.1",

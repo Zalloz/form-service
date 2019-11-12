@@ -17,8 +17,16 @@ import { setInterval } from "timers";
 const publicDirectory = path.join(__dirname, 'public');
 const port = process.env.PORT || 80
 
-const redisClient = redis.createClient({
+const redisClient1 = redis.createClient({
     host: "ec2-52-15-70-152.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient2 = redis.createClient({
+    host: "ec2-3-17-205-16.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient3 = redis.createClient({
+    host: "ec2-18-188-169-60.us-east-2.compute.amazonaws.com",
     port: "6379"
 });
 
@@ -32,30 +40,84 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
-    redisClient.get(agent.toString(), (err, reply) => {
-        if (err) {
-            console.log('Redis get error', err)
-            cb(err, null)
-        } else {
-            if (reply === null) {
-                postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
-                    if (err) {
-                        //Oops!
-                        cb(err, null);
-                    } else {
-                        cb(null, res.rows[0]);
-                        redisClient.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
-                            if (err) {
-                                console.log('Redis set error', err)
-                            }
-                        })
-                    };
-                });
+    if (agent >= 7500000 && agent <= (7500000 + (833333 * 1))) {
+        redisClient1.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
             } else {
-                cb(null, JSON.parse(reply))
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient1.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
             }
-        }
-    })
+        })
+    } else if (agent > (7500000 + (833333 * 1)) && agent <= (7500000 + (833333 * 2))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (833333 * 2)) && agent <= 10000000) {
+        redisClient3.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient3.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else {
+        cb('Out of bounds!', null)
+    }
 };
 
 http.createServer(function (req, res) {
