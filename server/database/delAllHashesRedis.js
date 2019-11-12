@@ -24,6 +24,7 @@ const dePopulate = async () => {
                 }
             })
         })
+        count++
         if (count % 10000 === 0) {
             console.log('Deleting hash#', count)
         }
