@@ -15,9 +15,7 @@ const agentTypes = ['listing', 'premier'];
 const populate = async () => {
     for (let i = 7500000; i <= 10000000; i++) {
         let hGET = await new Promise(resolve => redisClient.hget(`${i}`, `${i}`, resolve))
-        console.log(hGET)
         if (hGET === null) {
-            console.log('got here', i)
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
             const phone = faker.phone.phoneNumber('###-###-####');
@@ -35,6 +33,8 @@ const populate = async () => {
                 agent_photo
             }
             await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
+        } else {
+            console.log(hGET)
         }
     }
 }
