@@ -18,7 +18,7 @@ let countSuccess = 0;
 const populate = async () => {
     for (let i = 7500000; i <= 10000000; i++) {
         const hGET = await new Promise((resolve, reject) => {
-            redisClient.hget(`${i}`, `${i}`, (err, response) => {
+            redisClient.get(i.toString(), (err, response) => {
                 if (err) {
                     reject(err)
                 } else {
@@ -29,10 +29,10 @@ const populate = async () => {
         if (hGET === null) {
             countFail++
             if (countFail % 1000 === 0 || i === 10000000) {
-                console.log(countFail, 'unset hashes.')
+                console.log(countFail, 'unset keys.')
             }
             if (i % 10000 === 0) {
-                console.log('On hash$:', i)
+                console.log('On key#:', i)
             }
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
@@ -50,7 +50,7 @@ const populate = async () => {
                 num_ratings,
                 agent_photo
             }
-            await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
+            await new Promise(resolve => redisClient.set(i.toString(), JSON.stringify(obj), resolve));
         } else {
             countSuccess++
             if (countSuccess % 1000 === 0 || i === 10000000) {
