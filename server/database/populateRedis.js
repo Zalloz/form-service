@@ -24,6 +24,7 @@ const populate = async () => {
             })
         })
         if (hGET === null) {
+            console.log(i)
             const agent_name = faker.name.firstName() + ' ' + faker.name.lastName();
             const recent_sales = faker.random.number({ min: 0, max: 30 });
             const phone = faker.phone.phoneNumber('###-###-####');
@@ -41,8 +42,6 @@ const populate = async () => {
                 agent_photo
             }
             await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
-        } else {
-            console.log(hGET)
         }
     }
 }
