@@ -122,10 +122,10 @@ function getAgent(agent, cb) {
 
 http.createServer(function (req, res) {
     if (req.method === 'GET') {
+        res.end('loaderio-2a8a167d68cd7c32d8cbd0375cea696f', 'utf-8');
         if (req.url === `/loaderio-2a8a167d68cd7c32d8cbd0375cea696f`) {
             let verifyPath = path.join(__dirname, `loaderio-2a8a167d68cd7c32d8cbd0375cea696f`);
             fs.readFile(verifyPath, (err, verifyFile) => {
-                res.end('loaderio-2a8a167d68cd7c32d8cbd0375cea696f', 'utf-8');
                 return;
             });
         };
