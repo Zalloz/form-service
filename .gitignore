@@ -2,8 +2,6 @@ node_modules/
 /node_modules
 **/node_modules
 **/node_modules/
-**/Form-Service.pem
-Form-Service.pem
 
 **/Form-Database.pem
 Form-Database.pem
@@ -11,10 +9,20 @@ Form-Database.pem
 **/Form-Proxy.pem
 Form-Proxy.pem
 
+**/Form-Redis.pem
+Form-Redis.pem
+
+**/Form-Service.pem
+Form-Service.pem
+
 **/*.pem
 **/**.pem
+
 *.pem
 **.pem
 
-**/pem.txt
-pem.txt
+**/*.csv
+**/**.csv
+
+*.csv
+**.csv

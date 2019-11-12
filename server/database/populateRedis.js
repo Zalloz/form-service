@@ -6,7 +6,7 @@ const faker = require('faker')
 const redis = require('redis')
 
 const redisClient = redis.createClient({
-    host: "localhost", //ec2-52-15-70-152.us-east-2.compute.amazonaws.com
+    host: "localhost",
     port: "6379"
 });
 
@@ -14,9 +14,12 @@ const agentTypes = ['listing', 'premier'];
 
 let countFail = 0;
 let countSuccess = 0;
+const shardSize = 250000
+const shardNumber = 1
+const oddEvener = 0
 
 const populate = async () => {
-    for (let i = (7500000 + (833333 * 1 + 0)); i <= (7500000 + (833333 * 2 + 0)); i++) {
+    for (let i = (7500000 + (shardSize * (shardNumber - 1) + oddEvener)); i <= (7500000 + (shardSize * shardNumber + oddEvener)); i++) {
         const hGET = await new Promise((resolve, reject) => {
             redisClient.get(i.toString(), (err, response) => {
                 if (err) {
@@ -28,7 +31,7 @@ const populate = async () => {
         })
         if (hGET === null) {
             countFail++
-            if (countFail % 10000 === 0 || i === (7500000 + (833333 * 2 + 0))) {
+            if (countFail % 10000 === 0 || i === (7500000 + (shardSize * shardNumber + oddEvener))) {
                 console.log(countFail, 'unset keys.')
             }
             if (i % 10000 === 0) {
@@ -53,7 +56,7 @@ const populate = async () => {
             await new Promise(resolve => redisClient.set(i.toString(), JSON.stringify(obj), resolve));
         } else {
             countSuccess++
-            if (countSuccess % 10000 === 0 || i === (7500000 + (833333 * 2 + 0))) {
+            if (countSuccess % 10000 === 0 || i === (7500000 + (shardSize * shardNumber + oddEvener))) {
                 console.log(countSuccess, 'successes')
             }
         }
