@@ -38,6 +38,7 @@ function getAgent(agent, cb) {
             cb(err, null)
         } else {
             if (reply === null) {
+                console.log('postgres hit')
                 postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
                     if (err) {
                         //Oops!
@@ -52,7 +53,6 @@ function getAgent(agent, cb) {
                     };
                 });
             } else {
-                console.log('redis response')
                 cb(null, JSON.parse(reply))
             }
         }
