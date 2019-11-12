@@ -50,6 +50,8 @@ const populate = async () => {
                 agent_photo
             }
             await new Promise(resolve => redisClient.hset(`${i}`, `${i}`, JSON.stringify(obj), resolve));
+        } else {
+            console.log(hGET)
         }
     }
 }
