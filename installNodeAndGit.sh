@@ -8,4 +8,6 @@ exec bash
 git clone https://github.com/Zalloz/form-service.git
 cd form-service
 npm i
+chmod u+x installRedisReplica.sh
+./installRedisReplica.sh
 cd ~

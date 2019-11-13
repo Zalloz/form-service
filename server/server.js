@@ -40,7 +40,7 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
-    if (agent >= 7500000 && agent <= (7500000 + (833333 * 1))) {
+    if (agent >= 7500000 && agent <= (7500000 + (250000 * 1))) {
         redisClient1.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
@@ -65,7 +65,7 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (833333 * 1)) && agent <= (7500000 + (833333 * 2))) {
+    } else if (agent > (7500000 + (250000 * 1)) && agent <= (7500000 + (250000 * 2))) {
         redisClient2.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
@@ -90,8 +90,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (833333 * 2)) && agent <= 10000000) {
-        redisClient3.get(agent.toString(), (err, reply) => {
+    } else if (agent > (7500000 + (250000 * 2)) && agent <= (7500000 + (250000 * 3))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -103,7 +103,157 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient3.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 3)) && agent <= (7500000 + (250000 * 4))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 4)) && agent <= (7500000 + (250000 * 5))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 5)) && agent <= (7500000 + (250000 * 6))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 6)) && agent <= (7500000 + (250000 * 7))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 7)) && agent <= (7500000 + (250000 * 8))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > (7500000 + (250000 * 9)) && agent <= (7500000 + (250000 * 10))) {
+        redisClient2.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
