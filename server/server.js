@@ -29,6 +29,34 @@ const redisClient3 = redis.createClient({
     host: "ec2-18-188-169-60.us-east-2.compute.amazonaws.com",
     port: "6379"
 });
+const redisClient4 = redis.createClient({
+    host: "ec2-3-19-217-58.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient5 = redis.createClient({
+    host: "ec2-3-16-28-137.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient6 = redis.createClient({
+    host: "ec2-18-223-248-156.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient7 = redis.createClient({
+    host: "ec2-18-221-30-3.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient8 = redis.createClient({
+    host: "ec2-3-133-101-93.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient9 = redis.createClient({
+    host: "ec2-3-15-156-243.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
+const redisClient10 = redis.createClient({
+    host: "ec2-3-15-162-50.us-east-2.compute.amazonaws.com",
+    port: "6379"
+});
 
 const postgres = new Client({
     user: "postgres",
@@ -40,7 +68,7 @@ const postgres = new Client({
 postgres.connect();
 
 function getAgent(agent, cb) {
-    if (agent >= 7500000 && agent <= (7500000 + (250000 * 1))) {
+    if (agent >= 7500000 && agent <= 7750000) {
         redisClient1.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
@@ -65,7 +93,7 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 1)) && agent <= (7500000 + (250000 * 2))) {
+    } else if (agent > 7750000 && agent <= 8000000) {
         redisClient2.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
@@ -90,8 +118,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 2)) && agent <= (7500000 + (250000 * 3))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 8000000 && agent <= 8250000) {
+        redisClient3.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -103,7 +131,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient3.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -115,8 +143,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 3)) && agent <= (7500000 + (250000 * 4))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 8250000 && agent <= 8500000) {
+        redisClient4.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -128,7 +156,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient4.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -140,8 +168,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 4)) && agent <= (7500000 + (250000 * 5))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 8500000 && agent <= 8750000) {
+        redisClient5.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -153,7 +181,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient5.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -165,8 +193,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 5)) && agent <= (7500000 + (250000 * 6))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 8750000 && agent <= 9000000) {
+        redisClient6.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -178,7 +206,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient6.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -190,8 +218,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 6)) && agent <= (7500000 + (250000 * 7))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 9000000 && agent <= 9250000) {
+        redisClient7.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -203,7 +231,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient7.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -215,8 +243,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 7)) && agent <= (7500000 + (250000 * 8))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 9250000 && agent <= 9500000) {
+        redisClient8.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -228,7 +256,7 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient8.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
@@ -240,8 +268,8 @@ function getAgent(agent, cb) {
                 }
             }
         })
-    } else if (agent > (7500000 + (250000 * 9)) && agent <= (7500000 + (250000 * 10))) {
-        redisClient2.get(agent.toString(), (err, reply) => {
+    } else if (agent > 9500000 && agent <= 9750000) {
+        redisClient9.get(agent.toString(), (err, reply) => {
             if (err) {
                 console.log('Redis get error', err)
                 cb(err, null)
@@ -253,7 +281,32 @@ function getAgent(agent, cb) {
                             cb(err, null);
                         } else {
                             cb(null, res.rows[0]);
-                            redisClient2.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                            redisClient9.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
+                                if (err) {
+                                    console.log('Redis set error', err)
+                                }
+                            })
+                        };
+                    });
+                } else {
+                    cb(null, JSON.parse(reply))
+                }
+            }
+        })
+    } else if (agent > 9750000 && agent <= 10000000) {
+        redisClient10.get(agent.toString(), (err, reply) => {
+            if (err) {
+                console.log('Redis get error', err)
+                cb(err, null)
+            } else {
+                if (reply === null) {
+                    postgres.query(`select * from agents where id = ${agent}`, (err, res) => {
+                        if (err) {
+                            //Oops!
+                            cb(err, null);
+                        } else {
+                            cb(null, res.rows[0]);
+                            redisClient10.set(agent.toString(), JSON.stringify(res.rows[0]), (err, success) => {
                                 if (err) {
                                     console.log('Redis set error', err)
                                 }
