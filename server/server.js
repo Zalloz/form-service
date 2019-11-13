@@ -266,7 +266,7 @@ function getAgent(agent, cb) {
             }
         })
     } else {
-        console.log('Whoops! Out of bounds!')
+        console.log('Whoops! Out of bounds!', agent)
         cb('Out of bounds!', null)
     }
 };
