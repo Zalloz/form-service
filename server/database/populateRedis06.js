@@ -14,12 +14,10 @@ const agentTypes = ['listing', 'premier'];
 
 let countFail = 0;
 let countSuccess = 0;
-const shardSize = 250000
-const shardNumber = 1
-const oddEvener = 0
+const endCount = 9000000;
 
 const populate = async () => {
-    for (let i = (7500000 + (shardSize * (shardNumber - 1) + oddEvener)); i <= (7500000 + (shardSize * shardNumber + oddEvener)); i++) {
+    for (let i = 8750000; i <= 9000000; i++) {
         const hGET = await new Promise((resolve, reject) => {
             redisClient.get(i.toString(), (err, response) => {
                 if (err) {
@@ -31,7 +29,7 @@ const populate = async () => {
         })
         if (hGET === null) {
             countFail++
-            if (countFail % 10000 === 0 || i === (7500000 + (shardSize * shardNumber + oddEvener))) {
+            if (countFail % 10000 === 0 || i === endCount) {
                 console.log(countFail, 'unset keys.')
             }
             if (i % 10000 === 0) {
@@ -56,7 +54,7 @@ const populate = async () => {
             await new Promise(resolve => redisClient.set(i.toString(), JSON.stringify(obj), resolve));
         } else {
             countSuccess++
-            if (countSuccess % 10000 === 0 || i === (7500000 + (shardSize * shardNumber + oddEvener))) {
+            if (countSuccess % 10000 === 0 || i === endCount) {
                 console.log(countSuccess, 'successes')
             }
         }
