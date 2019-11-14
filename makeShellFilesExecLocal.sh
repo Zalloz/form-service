@@ -15,4 +15,11 @@ chmod u+x proxy01.sh
 chmod u+x service01.sh
 chmod u+x service02.sh
 chmod u+x service03.sh
+chmod u+x service04.sh
+chmod u+x service05.sh
+chmod u+x service06.sh
+chmod u+x service07.sh
+chmod u+x service08.sh
+chmod u+x service09.sh
+chmod u+x service10.sh
 chmod u+x nginx01.sh
