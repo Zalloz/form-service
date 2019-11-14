@@ -13,3 +13,6 @@ chmod u+x database01.sh
 chmod u+x database02.sh
 chmod u+x proxy01.sh
 chmod u+x service01.sh
+chmod u+x service02.sh
+chmod u+x service03.sh
+chmod u+x nginx01.sh
