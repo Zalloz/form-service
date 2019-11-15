@@ -351,6 +351,8 @@ http.createServer(function (req, res) {
                     count++;
                     if (err) {
                         //Oops!
+                        console.log('Error', err)
+                        res.status(500).end(err)
                     } else {
                         agents.push(data);
                     };
